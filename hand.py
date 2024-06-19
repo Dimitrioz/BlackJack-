@@ -1,16 +1,19 @@
 class Hand:
     def __init__(self):
-        self.cards = []  # start with an empty list as we did in the Deck class
-        self.value = 0   # start with zero value
-        self.aces = 0    # add an attribute to keep track of aces
-        
-    def add_card(self,card):
-        if type(card) == type([]):
-            # List of multiple Card objects
-            self.cards.extend(card)
-        else:
-            # Single Card object
-            self.cards.append(card)
-    
+        self.cards = []  # List to store card objects
+        self.value = 0   # Value of the hand
+        self.aces = 0    # Number of aces in the hand
+
+    def add_card(self, card):
+        # Add a card to the hand and adjust the value
+        self.cards.append(card)
+        self.value += card.value
+        if card.rank == 'Ace':
+            self.aces += 1
+        self.adjust_for_ace()
+
     def adjust_for_ace(self):
-        pass
+        # If total value is over 21 and there is an ace, adjust the ace's value from 11 to 1
+        while self.value > 21 and self.aces:
+            self.value -= 10
+            self.aces -= 1
