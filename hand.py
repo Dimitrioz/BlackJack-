@@ -7,7 +7,9 @@ class Hand:
     def add_card(self, card):
         # Add a card to the hand and adjust the value
         self.cards.append(card)
-        self.value += card.value
+        self.value += card.values[card.rank]
+        
+        # Track aces
         if card.rank == 'Ace':
             self.aces += 1
         self.adjust_for_ace()

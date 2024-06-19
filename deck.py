@@ -24,5 +24,6 @@ class Deck:
         
     def deal(self):
         # We remove one card from the list of all_cards
-        return self.deck.pop()
+        single_card = self.deck.pop()
+        return single_card
     
